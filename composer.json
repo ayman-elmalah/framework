@@ -1,0 +1,27 @@
+{
+    "name": "ayman-elmalah/framework",
+    "description": "Phplite framework",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ayman Elmalah",
+            "email": "aymanelmalah77@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php" : "^7.1.3",
+        "filp/whoops": "^2.5",
+        "jenssegers/blade": "^1.2",
+        "rakit/validation": "^1.2"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Phplite\\" : "src/"
+        },
+        "files" : [
+            "src/Helpers/helper.php"
+        ]
+    }
+}
