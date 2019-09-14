@@ -516,7 +516,7 @@ class Database {
         static::query(static::$query);
         $query = trim(static::$query, ' ');
         $data = static::$connection->prepare($query);
-        $data->execute();
+        $data->execute(static::$binding);
         $pages = ceil($data->rowCount() / $items_per_page);
 
         $page = Request::get('page');
@@ -565,18 +565,18 @@ class Database {
 
             $current_page_active = $current_page == 1 ? 'active' : '';
             $href = strpos($full_link, '?') ? ($full_link.'&page=1') : ($full_link.'?page=1');
-            $links .= "<li class='link' $current_page_active><a href='$href'>First</a></li>";
+            $links .= "<li class='link $current_page_active'><a href='$href'>First</a></li>";
 
             for($i = $from; $i<= $to; $i++) {
                 $current_page_active = $current_page == $i ? 'active' : '';
                 $href = strpos($full_link, '?') ? ($full_link.'&page='.$i) : ($full_link.'?page='.$i);
-                $links .= "<li class='link' $current_page_active><a href='$href'>$i</a></li>";
+                $links .= "<li class='link $current_page_active'><a href='$href'>$i</a></li>";
             }
 
             if ($pages > 1) {
                 $current_page_active = $current_page == $pages ? 'active' : '';
                 $href = strpos($full_link, '?') ? ($full_link.'&page='.$pages) : ($full_link.'?page='.$pages);
-                $links .= "<li class='link' $current_page_active><a href='$href'>Last</a></li>";
+                $links .= "<li class='link $current_page_active'><a href='$href'>Last</a></li>";
             }
 
             return $links;
